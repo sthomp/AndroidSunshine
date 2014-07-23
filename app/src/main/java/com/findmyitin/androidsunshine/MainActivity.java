@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
@@ -25,6 +26,33 @@ public class MainActivity extends Activity {
                     .add(R.id.container, new ForecastFragment())
                     .commit();
         }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.d(LOG_TAG, "onPause");
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.d(LOG_TAG, "onResume");
+    }
+
+    @Override
+    protected void onStop(){
+        Log.d(LOG_TAG, "onStop");
+    }
+
+    @Override
+    protected void onStart(){
+        Log.d(LOG_TAG, "onStart");
+    }
+
+    @Override
+    protected void onDestroy(){
+        Log.d(LOG_TAG, "onDestroy");
     }
 
 
