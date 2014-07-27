@@ -21,7 +21,11 @@
         <activity
             android:name=".DetailActivity"
             android:label="Detail"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.findmyitin.androidsunshine.MainActivity" />
+        </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -30,6 +34,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.findmyitin.androidsunshine.MainActivity" />
         </activity>
+        <provider
+            android:authorities="com.findmyitin.androidsunshine"
+            android:name=".data.WeatherProvider" />
+
     </application>
 
 </manifest>

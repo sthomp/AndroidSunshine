@@ -1,58 +1,31 @@
 package com.findmyitin.androidsunshine;
 
-import android.app.Activity;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends ActionBarActivity {
+
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new ForecastFragment())
                     .commit();
         }
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-        Log.d(LOG_TAG, "onPause");
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        Log.d(LOG_TAG, "onResume");
-    }
-
-    @Override
-    protected void onStop(){
-        Log.d(LOG_TAG, "onStop");
-    }
-
-    @Override
-    protected void onStart(){
-        Log.d(LOG_TAG, "onStart");
-    }
-
-    @Override
-    protected void onDestroy(){
-        Log.d(LOG_TAG, "onDestroy");
     }
 
 
@@ -73,16 +46,14 @@ public class MainActivity extends Activity {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
-        if(id == R.id.action_map){
+        if (id == R.id.action_map) {
             openPreferredLocationInMap();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-    private void openPreferredLocationInMap(){
-
+    private void openPreferredLocationInMap() {
         SharedPreferences sharedPrefs =
                 PreferenceManager.getDefaultSharedPreferences(this);
         String location = sharedPrefs.getString(
@@ -104,6 +75,6 @@ public class MainActivity extends Activity {
         } else {
             Log.d(LOG_TAG, "Couldn't call " + location + ", no receiving apps installed!");
         }
-
     }
+
 }
